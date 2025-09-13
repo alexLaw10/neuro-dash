@@ -1,0 +1,18 @@
+<div class="layout-container">
+  <neurodash-sidebar #sidebar></neurodash-sidebar>
+  
+  <main class="main-content" [class.main-content-mobile]="isMobile" [class.main-content-sidebar-open]="isSidebarOpen && !isMobile">
+    <header class="main-header" *ngIf="isMobile">
+      <button class="mobile-menu-toggle" (click)="sidebar.toggleSidebar()">
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+      </button>
+      <h1 class="page-title">NeuroDash</h1>
+    </header>
+    
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

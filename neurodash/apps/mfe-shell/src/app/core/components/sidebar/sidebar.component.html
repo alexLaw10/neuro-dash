@@ -1,0 +1,22 @@
+<nav class="sidebar" [class.sidebar-open]="isOpen" [class.sidebar-mobile]="isMobile">
+  <div class="sidebar-header">
+    <h2>NeuroDash</h2>
+    <button class="sidebar-toggle" (click)="toggleSidebar()" *ngIf="isMobile">
+      <span class="hamburger"></span>
+      <span class="hamburger"></span>
+      <span class="hamburger"></span>
+    </button>
+  </div>
+  
+  <ul class="sidebar-menu">
+    <li *ngFor="let item of menuItems" class="menu-item">
+      <a [routerLink]="item.route" routerLinkActive="active" class="menu-link" (click)="isMobile && toggleSidebar()">
+        <!-- <span class="menu-icon">{{ item.icon }}</span> -->
+        <span class="menu-label">{{ item.label }}</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- Overlay para mobile -->
+<div class="sidebar-overlay" *ngIf="isMobile && isOpen" (click)="toggleSidebar()"></div>
