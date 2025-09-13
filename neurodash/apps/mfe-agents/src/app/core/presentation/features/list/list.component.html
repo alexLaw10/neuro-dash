@@ -1,0 +1,34 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Tipo</th>
+      <th>Status</th>
+      <th>Última Atividade</th>
+      <th>Tarefas Completadas</th>
+      <th>Taxa de Sucesso</th>
+      <th>Tempo Médio de Resposta</th>
+      <th>Max Tarefas Concorrentes</th>
+      <th>Timeout</th>
+      <th>Tentativas de Retry</th>
+      <th>Prioridade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let agent of agents">
+      <td>{{ agent.id }}</td>
+      <td>{{ agent.name }}</td>
+      <td>{{ agent.type }}</td>
+      <td>{{ agent.status }}</td>
+      <td>{{ agent.lastActivity | date:'short' }}</td>
+      <td>{{ agent.tasksCompleted }}</td>
+      <td>{{ agent.successRate }}%</td>
+      <td>{{ agent.averageResponseTime }}s</td>
+      <td>{{ agent.config.maxConcurrentTasks }}</td>
+      <td>{{ agent.config.timeout }}s</td>
+      <td>{{ agent.config.retryAttempts }}</td>
+      <td>{{ agent.config.priority }}</td>
+    </tr>
+  </tbody>
+</table>
