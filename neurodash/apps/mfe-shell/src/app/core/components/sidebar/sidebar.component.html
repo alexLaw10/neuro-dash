@@ -10,7 +10,10 @@
   
   <ul class="sidebar-menu">
     <li *ngFor="let item of menuItems" class="menu-item">
-      <a [routerLink]="item.route" routerLinkActive="active" class="menu-link" (click)="isMobile && toggleSidebar()">
+      <a [routerLink]="item.route" 
+         [class.active]="isActiveRoute(item.route)" 
+         class="menu-link" 
+         (click)="onMenuClick()">
         <!-- <span class="menu-icon">{{ item.icon }}</span> -->
         <span class="menu-label">{{ item.label }}</span>
       </a>

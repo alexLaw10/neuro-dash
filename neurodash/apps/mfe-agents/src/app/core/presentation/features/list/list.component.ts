@@ -9,6 +9,7 @@ import { Agent } from '../../../domain/entities/agent.entity';
 export class ListComponent implements OnInit { 
 
   public agents: Agent[] = [];
+  public agent: Agent | null = null;
 
   constructor(private agentsService: AgentsService) {}
 
@@ -22,4 +23,18 @@ export class ListComponent implements OnInit {
       error: (error) => console.error(error)
     });
   }
+  public detailAgent(id: string): void {
+    this.agentsService.getAgentById(id).subscribe({
+      next: (agent) => this.agent = agent,
+      error: (error) => console.error(error)
+    });
+  }
+
+  public deleteAgent(id: string): void {
+    this.agentsService.deleteAgent(id).subscribe({
+      next: () => this.loadAgents(),
+      error: (error) => console.error(error)
+    });
+  }
+   
 }

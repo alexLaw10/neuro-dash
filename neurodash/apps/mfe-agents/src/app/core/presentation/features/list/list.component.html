@@ -1,34 +1,65 @@
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nome</th>
-      <th>Tipo</th>
-      <th>Status</th>
-      <th>Última Atividade</th>
-      <th>Tarefas Completadas</th>
-      <th>Taxa de Sucesso</th>
-      <th>Tempo Médio de Resposta</th>
-      <th>Max Tarefas Concorrentes</th>
-      <th>Timeout</th>
-      <th>Tentativas de Retry</th>
-      <th>Prioridade</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let agent of agents">
-      <td>{{ agent.id }}</td>
-      <td>{{ agent.name }}</td>
-      <td>{{ agent.type }}</td>
-      <td>{{ agent.status }}</td>
-      <td>{{ agent.lastActivity | date:'short' }}</td>
-      <td>{{ agent.tasksCompleted }}</td>
-      <td>{{ agent.successRate }}%</td>
-      <td>{{ agent.averageResponseTime }}s</td>
-      <td>{{ agent.config.maxConcurrentTasks }}</td>
-      <td>{{ agent.config.timeout }}s</td>
-      <td>{{ agent.config.retryAttempts }}</td>
-      <td>{{ agent.config.priority }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="agents-container">
+  <div class="agents-header">
+    <h2>Lista de Agentes</h2>
+    <button (click)="loadAgents()" class="refresh-btn">Atualizar</button>
+  </div>
+
+  <div class="table-container" *ngIf="agents.length > 0; else noAgents">
+    <table class="agents-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Tipo</th>
+          <th>Status</th>
+          <th>Última Atividade</th>
+          <th>Tarefas Completadas</th>
+          <th>Taxa de Sucesso</th>
+          <th>Tempo Médio de Resposta</th>
+          <th>Max Tarefas Concorrentes</th>
+          <th>Timeout</th>
+          <th>Tentativas de Retry</th>
+          <th>Prioridade</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let agent of agents" class="agent-row">
+          <td class="agent-id">{{ agent.id }}</td>
+          <td class="agent-name">{{ agent.name }}</td>
+          <td class="agent-type">{{ agent.type }}</td>
+          <td class="agent-status">
+            <span class="status-badge status-{{ agent.status }}">
+              {{ agent.status }}
+            </span>
+          </td>
+          <td class="agent-activity">
+            {{ agent.lastActivity | date:'dd/MM/yyyy HH:mm' }}
+          </td>
+          <td class="agent-tasks">{{ agent.tasksCompleted | number }}</td>
+          <td class="agent-success">{{ (agent.successRate * 100).toFixed(1) }}%</td>
+          <td class="agent-response">{{ agent.averageResponseTime }}s</td>
+          <td class="agent-max-tasks">{{ agent.config.maxConcurrentTasks }}</td>
+          <td class="agent-timeout">{{ agent.config.timeout / 1000 }}s</td>
+          <td class="agent-retry">{{ agent.config.retryAttempts }}</td>
+          <td class="agent-priority">{{ agent.config.priority }}</td>
+          <td class="agent-actions">
+            <button (click)="detailAgent(agent.id)" class="btn-details">
+              Detalhes
+            </button>
+            <button (click)="deleteAgent(agent.id)" class="btn-delete">
+              Deletar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noAgents>
+    <div class="no-agents">
+      <p>Nenhum agente encontrado.</p>
+      <button (click)="loadAgents()" class="refresh-btn">Tentar Novamente</button>
+    </div>
+  </ng-template>
+</div>
