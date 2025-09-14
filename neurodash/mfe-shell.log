@@ -1,0 +1,26 @@
+
+> nx run mfe-shell:serve:development --port=4200
+
+- Generating browser application bundles (phase: setup)...
+    TypeScript compiler options "target" and "useDefineForClassFields" are set to "ES2022" and "false" respectively by the Angular CLI. To control ECMA version and features use the Browerslist configuration. For more information, see https://angular.io/guide/build#configuring-browser-compatibility
+    NOTE: You can set the "target" to "ES2022" in the project's tsconfig to remove this warning.
+>  NX  Unable to load tsconfig-paths, workspace libraries may be inaccessible.
+  - To fix this, install tsconfig-paths with npm/yarn/pnpm
+>  NX  Falling back to ts-node for local typescript execution. This may be a little slower.
+  - To fix this, ensure @swc-node/register and @swc/core have been installed
+
+ >  NX   mfConfig.shared is not a function
+
+   Pass --verbose to see the stacktrace.
+
+
+ 
+
+ >  NX   Running target serve for project mfe-shell failed
+
+   Failed tasks:
+   
+   - mfe-shell:serve:development
+   
+   Hint: run the command with --verbose for more details.
+

@@ -1,84 +1,78 @@
 {
   "name": "mfe-chat",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "prefix": "neurodash",
   "sourceRoot": "apps/mfe-chat/src",
-  "tags": [],
+  "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nx/angular:webpack-browser",
+      "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
+        "compiler": "babel",
         "outputPath": "dist/apps/mfe-chat",
         "index": "apps/mfe-chat/src/index.html",
-        "main": "apps/mfe-chat/src/main.ts",
-        "polyfills": ["zone.js"],
+        "baseHref": "/",
+        "main": "apps/mfe-chat/src/main.tsx",
         "tsConfig": "apps/mfe-chat/tsconfig.app.json",
         "assets": ["apps/mfe-chat/src/favicon.ico", "apps/mfe-chat/src/assets"],
         "styles": ["apps/mfe-chat/src/styles.scss"],
         "scripts": [],
-        "customWebpackConfig": {
-          "path": "apps/mfe-chat/webpack.config.js"
-        }
+        "isolatedConfig": true,
+        "webpackConfig": "apps/mfe-chat/webpack.config.js"
       },
       "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
         "production": {
-          "budgets": [
+          "fileReplacements": [
             {
-              "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
+              "replace": "apps/mfe-chat/src/environments/environment.ts",
+              "with": "apps/mfe-chat/src/environments/environment.prod.ts"
             }
           ],
+          "optimization": true,
           "outputHashing": "all",
-          "customWebpackConfig": {
-            "path": "apps/mfe-chat/webpack.prod.config.js"
-          }
-        },
-        "development": {
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
         }
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "serve": {
-      "executor": "@nx/angular:webpack-dev-server",
+      "executor": "@nx/webpack:dev-server",
+      "defaultConfiguration": "development",
       "options": {
-        "port": 4202,
-        "publicHost": "http://localhost:4202"
+        "buildTarget": "mfe-chat:build:development",
+        "hmr": true,
+        "port": 4202
       },
       "configurations": {
-        "production": {
-          "browserTarget": "mfe-chat:build:production"
-        },
         "development": {
-          "browserTarget": "mfe-chat:build:development"
+          "buildTarget": "mfe-chat:build:development"
+        },
+        "production": {
+          "buildTarget": "mfe-chat:build:production",
+          "hmr": false
         }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "browserTarget": "mfe-chat:build"
       }
     },
     "lint": {
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/mfe-chat/**/*.ts", "apps/mfe-chat/**/*.html"]
+        "lintFilePatterns": ["apps/mfe-chat/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "mfe-chat:build"
       }
     },
     "test": {
@@ -94,23 +88,7 @@
           "codeCoverage": true
         }
       }
-    },
-    "serve-static": {
-      "executor": "@nx/web:file-server",
-      "defaultConfiguration": "production",
-      "options": {
-        "buildTarget": "mfe-chat:build",
-        "port": 4202,
-        "watch": false
-      },
-      "configurations": {
-        "development": {
-          "buildTarget": "mfe-chat:build:development"
-        },
-        "production": {
-          "buildTarget": "mfe-chat:build:production"
-        }
-      }
     }
-  }
+  },
+  "tags": []
 }

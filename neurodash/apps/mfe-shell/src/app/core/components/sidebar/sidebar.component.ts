@@ -14,8 +14,8 @@ export class SidebarComponent implements OnInit {
 
   menuItems = [
     { label: 'Dashboard', route: '/', icon: 'dashboard' },
-    { label: 'Agentes', route: '/agents', icon: 'agents' },
-    { label: 'Chat', route: '/chat', icon: 'chat' },
+      { label: 'Agentes', route: '/agents', icon: 'agents' },
+      { label: 'Chat', route: '/chat', icon: 'chat' },
     { label: 'Configurações', route: '/settings', icon: 'settings' }
   ];
 

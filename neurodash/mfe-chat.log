@@ -1,0 +1,100 @@
+
+> nx run mfe-chat:serve:development --port=4202
+
+>  NX  Unable to load tsconfig-paths, workspace libraries may be inaccessible.
+  - To fix this, install tsconfig-paths with npm/yarn/pnpm
+>  NX  Falling back to ts-node for local typescript execution. This may be a little slower.
+  - To fix this, ensure @swc-node/register and @swc/core have been installed
+<i> [webpack-dev-server] Project is running at:
+<i> [webpack-dev-server] Loopback: http://localhost:4202/, http://[::1]:4202/
+<i> [webpack-dev-server] 404s will fallback to '/index.html'
+
+>  NX  Web Development Server is listening at http://localhost:4202/
+
+Entrypoint [1mmain[39m[22m [1m[33m[big][39m[22m 472 KiB (525 KiB) = [1m[32mvendor.js[39m[22m 404 KiB [1m[32mmain.js[39m[22m 68.3 KiB 2 auxiliary assets
+Entrypoint [1mstyles[39m[22m [1m[33m[big][39m[22m 464 KiB (519 KiB) = [1m[32mstyles.css[39m[22m 118 bytes [1m[32mstyles.js[39m[22m 464 KiB 2 auxiliary assets
+Entrypoint [1mmfe_chat[39m[22m [1m[33m[big][39m[22m 460 KiB (513 KiB) = [1m[32mremoteEntry.mjs[39m[22m 1 auxiliary asset
+chunk (runtime: main, mfe_chat, styles) [1m[32mdefault-node_modules_react-dom_index_js.js[39m[22m (id hint: default) 1020 KiB [1m[32m[rendered][39m[22m [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main, mfe_chat, styles) [1m[32mdefault-node_modules_react-router-dom_dist_index_js.js[39m[22m (id hint: default) 228 KiB [1m[32m[rendered][39m[22m [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main, mfe_chat) [1m[32mdefault-src_app_app_tsx-node_modules_react-dom_client_js.js[39m[22m (id hint: default) 43.5 KiB (javascript) 42 bytes (consume-shared) [1m[32m[rendered][39m[22m [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main, mfe_chat, styles) (id hint: default) 42 bytes [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main) [1m[32mmain.js[39m[22m (main) 126 bytes (share-init) 1.01 KiB (javascript) 46.5 KiB (runtime) [1m[33m[entry][39m[22m [1m[32m[rendered][39m[22m
+chunk (runtime: mfe_chat) [1m[32mremoteEntry.mjs[39m[22m (mfe_chat) 379 KiB (javascript) 126 bytes (share-init) 45.3 KiB (runtime) [1m[33m[entry][39m[22m [1m[32m[rendered][39m[22m
+chunk (runtime: main) [1m[32msrc_bootstrap_tsx.js[39m[22m 1.81 KiB (javascript) 42 bytes (consume-shared) [1m[32m[rendered][39m[22m
+chunk (runtime: mfe_chat) [1m[32msrc_remote-entry_tsx.js[39m[22m 11.6 KiB [1m[32m[rendered][39m[22m
+chunk (runtime: styles) [1m[32mstyles.css[39m[22m, [1m[32mstyles.js[39m[22m (styles) 384 KiB (javascript) 126 bytes (share-init) 79 bytes (css/mini-extract) 45 KiB (runtime) [1m[33m[entry][39m[22m [1m[32m[rendered][39m[22m
+chunk (runtime: main) [1m[32mvendor.js[39m[22m (vendor) (id hint: vendor) 388 KiB [1m[33m[initial][39m[22m [1m[32m[rendered][39m[22m [1m[33msplit chunk (cache group: vendor) (name: vendor)[39m[22m
+chunk (runtime: main, mfe_chat, styles) [1m[32mvendors-node_modules_react_index_js.js[39m[22m (id hint: vendors) 85.7 KiB [1m[32m[rendered][39m[22m [1m[33mreused as split chunk (cache group: defaultVendors)[39m[22m
+webpack compiled [1m[32msuccessfully[39m[22m (b649863e7d3f12aa)
+No errors found.
+Entrypoint [1mmain[39m[22m [1m[33m[big][39m[22m 472 KiB (525 KiB) = [1m[32mvendor.js[39m[22m 404 KiB [1m[32mmain.js[39m[22m 68.3 KiB 2 auxiliary assets
+Entrypoint [1mstyles[39m[22m [1m[33m[big][39m[22m 464 KiB (519 KiB) = [1m[32mstyles.css[39m[22m 118 bytes [1m[32mstyles.js[39m[22m 464 KiB 2 auxiliary assets
+Entrypoint [1mmfe_chat[39m[22m [1m[33m[big][39m[22m 460 KiB (513 KiB) = [1m[32mremoteEntry.mjs[39m[22m 1 auxiliary asset
+chunk (runtime: main, mfe_chat, styles) [1m[32mdefault-node_modules_react-dom_index_js.js[39m[22m (id hint: default) 1020 KiB [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main, mfe_chat, styles) [1m[32mdefault-node_modules_react-router-dom_dist_index_js.js[39m[22m (id hint: default) 228 KiB [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main, mfe_chat) [1m[32mdefault-src_app_app_tsx-node_modules_react-dom_client_js.js[39m[22m (id hint: default) 43.5 KiB (javascript) 42 bytes (consume-shared) [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main, mfe_chat, styles) (id hint: default) 42 bytes [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main) [1m[32mmain.js[39m[22m (main) 1.01 KiB (javascript) 126 bytes (share-init) 46.5 KiB (runtime) [1m[33m[entry][39m[22m
+chunk (runtime: mfe_chat) [1m[32mremoteEntry.mjs[39m[22m (mfe_chat) 379 KiB (javascript) 126 bytes (share-init) 45.3 KiB (runtime) [1m[33m[entry][39m[22m
+chunk (runtime: main) [1m[32msrc_bootstrap_tsx.js[39m[22m 1.81 KiB (javascript) 42 bytes (consume-shared)
+chunk (runtime: mfe_chat) [1m[32msrc_remote-entry_tsx.js[39m[22m 11.6 KiB
+chunk (runtime: styles) [1m[32mstyles.css[39m[22m, [1m[32mstyles.js[39m[22m (styles) 384 KiB (javascript) 79 bytes (css/mini-extract) 126 bytes (share-init) 45 KiB (runtime) [1m[33m[entry][39m[22m
+chunk (runtime: main) [1m[32mvendor.js[39m[22m (vendor) (id hint: vendor) 388 KiB [1m[33m[initial][39m[22m [1m[33msplit chunk (cache group: vendor) (name: vendor)[39m[22m
+chunk (runtime: main, mfe_chat, styles) [1m[32mvendors-node_modules_react_index_js.js[39m[22m (id hint: vendors) 85.7 KiB [1m[33mreused as split chunk (cache group: defaultVendors)[39m[22m
+webpack compiled [1m[32msuccessfully[39m[22m (b649863e7d3f12aa)
+No errors found.
+Entrypoint [1mmain[39m[22m [1m[33m[big][39m[22m 472 KiB (525 KiB) = [1m[32mvendor.js[39m[22m 404 KiB [1m[32mmain.js[39m[22m 68.3 KiB 2 auxiliary assets
+Entrypoint [1mstyles[39m[22m [1m[33m[big][39m[22m 464 KiB (519 KiB) = [1m[32mstyles.css[39m[22m 118 bytes [1m[32mstyles.js[39m[22m 464 KiB 2 auxiliary assets
+Entrypoint [1mmfe_chat[39m[22m [1m[33m[big][39m[22m 460 KiB (513 KiB) = [1m[32mremoteEntry.mjs[39m[22m 1 auxiliary asset
+chunk (runtime: main, mfe_chat, styles) [1m[32mdefault-node_modules_react-dom_index_js.js[39m[22m (id hint: default) 1020 KiB [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main, mfe_chat, styles) [1m[32mdefault-node_modules_react-router-dom_dist_index_js.js[39m[22m (id hint: default) 228 KiB [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main, mfe_chat) [1m[32mdefault-src_app_app_tsx-node_modules_react-dom_client_js.js[39m[22m (id hint: default) 43.5 KiB (javascript) 42 bytes (consume-shared) [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main, mfe_chat, styles) (id hint: default) 42 bytes [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main) [1m[32mmain.js[39m[22m (main) 1.01 KiB (javascript) 126 bytes (share-init) 46.5 KiB (runtime) [1m[33m[entry][39m[22m
+chunk (runtime: mfe_chat) [1m[32mremoteEntry.mjs[39m[22m (mfe_chat) 379 KiB (javascript) 126 bytes (share-init) 45.3 KiB (runtime) [1m[33m[entry][39m[22m
+chunk (runtime: main) [1m[32msrc_bootstrap_tsx.js[39m[22m 1.81 KiB (javascript) 42 bytes (consume-shared)
+chunk (runtime: mfe_chat) [1m[32msrc_remote-entry_tsx.js[39m[22m 11.6 KiB
+chunk (runtime: styles) [1m[32mstyles.css[39m[22m, [1m[32mstyles.js[39m[22m (styles) 384 KiB (javascript) 79 bytes (css/mini-extract) 126 bytes (share-init) 45 KiB (runtime) [1m[33m[entry][39m[22m
+chunk (runtime: main) [1m[32mvendor.js[39m[22m (vendor) (id hint: vendor) 388 KiB [1m[33m[initial][39m[22m [1m[33msplit chunk (cache group: vendor) (name: vendor)[39m[22m
+chunk (runtime: main, mfe_chat, styles) [1m[32mvendors-node_modules_react_index_js.js[39m[22m (id hint: vendors) 85.7 KiB [1m[33mreused as split chunk (cache group: defaultVendors)[39m[22m
+webpack compiled [1m[32msuccessfully[39m[22m (b649863e7d3f12aa)
+No errors found.
+Entrypoint [1mmain[39m[22m [1m[33m[big][39m[22m 472 KiB (525 KiB) = [1m[32mvendor.js[39m[22m 404 KiB [1m[32mmain.js[39m[22m 68.3 KiB 2 auxiliary assets
+Entrypoint [1mstyles[39m[22m [1m[33m[big][39m[22m 464 KiB (519 KiB) = [1m[32mstyles.css[39m[22m 118 bytes [1m[32mstyles.js[39m[22m 464 KiB 2 auxiliary assets
+Entrypoint [1mmfe_chat[39m[22m [1m[33m[big][39m[22m 460 KiB (513 KiB) = [1m[32mremoteEntry.mjs[39m[22m 1 auxiliary asset
+chunk (runtime: main, mfe_chat, styles) [1m[32mdefault-node_modules_react-dom_index_js.js[39m[22m (id hint: default) 1020 KiB [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main, mfe_chat, styles) [1m[32mdefault-node_modules_react-router-dom_dist_index_js.js[39m[22m (id hint: default) 228 KiB [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main, mfe_chat) [1m[32mdefault-src_app_app_tsx-node_modules_react-dom_client_js.js[39m[22m (id hint: default) 43.5 KiB (javascript) 42 bytes (consume-shared) [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main, mfe_chat, styles) (id hint: default) 42 bytes [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main) [1m[32mmain.js[39m[22m (main) 1.01 KiB (javascript) 126 bytes (share-init) 46.5 KiB (runtime) [1m[33m[entry][39m[22m
+chunk (runtime: mfe_chat) [1m[32mremoteEntry.mjs[39m[22m (mfe_chat) 379 KiB (javascript) 126 bytes (share-init) 45.3 KiB (runtime) [1m[33m[entry][39m[22m
+chunk (runtime: main) [1m[32msrc_bootstrap_tsx.js[39m[22m 1.81 KiB (javascript) 42 bytes (consume-shared)
+chunk (runtime: mfe_chat) [1m[32msrc_remote-entry_tsx.js[39m[22m 11.6 KiB
+chunk (runtime: styles) [1m[32mstyles.css[39m[22m, [1m[32mstyles.js[39m[22m (styles) 384 KiB (javascript) 79 bytes (css/mini-extract) 126 bytes (share-init) 45 KiB (runtime) [1m[33m[entry][39m[22m
+chunk (runtime: main) [1m[32mvendor.js[39m[22m (vendor) (id hint: vendor) 388 KiB [1m[33m[initial][39m[22m [1m[33msplit chunk (cache group: vendor) (name: vendor)[39m[22m
+chunk (runtime: main, mfe_chat, styles) [1m[32mvendors-node_modules_react_index_js.js[39m[22m (id hint: vendors) 85.7 KiB [1m[33mreused as split chunk (cache group: defaultVendors)[39m[22m
+webpack compiled [1m[32msuccessfully[39m[22m (b649863e7d3f12aa)
+No errors found.
+Entrypoint [1mmain[39m[22m [1m[33m[big][39m[22m 472 KiB (525 KiB) = [1m[32mvendor.js[39m[22m 404 KiB [1m[32mmain.js[39m[22m 68.3 KiB 2 auxiliary assets
+Entrypoint [1mstyles[39m[22m [1m[33m[big][39m[22m 464 KiB (519 KiB) = [1m[32mstyles.css[39m[22m 118 bytes [1m[32mstyles.js[39m[22m 464 KiB 2 auxiliary assets
+Entrypoint [1mmfe_chat[39m[22m [1m[33m[big][39m[22m 460 KiB (513 KiB) = [1m[32mremoteEntry.mjs[39m[22m 1 auxiliary asset
+chunk (runtime: main, mfe_chat, styles) [1m[32mdefault-node_modules_react-dom_index_js.js[39m[22m (id hint: default) 1020 KiB [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main, mfe_chat, styles) [1m[32mdefault-node_modules_react-router-dom_dist_index_js.js[39m[22m (id hint: default) 228 KiB [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main, mfe_chat) [1m[32mdefault-src_app_app_tsx-node_modules_react-dom_client_js.js[39m[22m (id hint: default) 43.5 KiB (javascript) 42 bytes (consume-shared) [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main, mfe_chat, styles) (id hint: default) 42 bytes [1m[33msplit chunk (cache group: default)[39m[22m
+chunk (runtime: main) [1m[32mmain.js[39m[22m (main) 1.01 KiB (javascript) 126 bytes (share-init) 46.5 KiB (runtime) [1m[33m[entry][39m[22m
+chunk (runtime: mfe_chat) [1m[32mremoteEntry.mjs[39m[22m (mfe_chat) 379 KiB (javascript) 126 bytes (share-init) 45.3 KiB (runtime) [1m[33m[entry][39m[22m
+chunk (runtime: main) [1m[32msrc_bootstrap_tsx.js[39m[22m 1.81 KiB (javascript) 42 bytes (consume-shared)
+chunk (runtime: mfe_chat) [1m[32msrc_remote-entry_tsx.js[39m[22m 11.6 KiB
+chunk (runtime: styles) [1m[32mstyles.css[39m[22m, [1m[32mstyles.js[39m[22m (styles) 384 KiB (javascript) 79 bytes (css/mini-extract) 126 bytes (share-init) 45 KiB (runtime) [1m[33m[entry][39m[22m
+chunk (runtime: main) [1m[32mvendor.js[39m[22m (vendor) (id hint: vendor) 388 KiB [1m[33m[initial][39m[22m [1m[33msplit chunk (cache group: vendor) (name: vendor)[39m[22m
+chunk (runtime: main, mfe_chat, styles) [1m[32mvendors-node_modules_react_index_js.js[39m[22m (id hint: vendors) 85.7 KiB [1m[33mreused as split chunk (cache group: defaultVendors)[39m[22m
+webpack compiled [1m[32msuccessfully[39m[22m (b649863e7d3f12aa)
+No errors found.
+<i> [webpack-dev-server] Gracefully shutting down. To force exit, press ^C again. Please wait...
+
+ 
+
+ >  NX   Successfully ran target serve for project mfe-chat
+
+
