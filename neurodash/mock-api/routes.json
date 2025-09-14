@@ -1,0 +1,5 @@
+{
+  "/api/agents/:id/metrics": "/agentMetrics?agentId=:id",
+  "/api/agents/:id/chat": "/chatMessages?agentId=:id",
+  "/api/agents/:id/config": "/agents/:id"
+}

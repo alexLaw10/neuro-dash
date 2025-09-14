@@ -7,6 +7,8 @@
     "serve:agents": "nx serve mfe-agents",
     "serve:chat": "nx serve mfe-chat",
     "serve:all": "concurrently \"npm run serve:shell\" \"npm run serve:agents\" \"npm run serve:chat\"",
+    "serve:mock": "cd mock-api && npm start",
+    "serve:all-with-mock": "concurrently \"npm run serve:shell\" \"npm run serve:agents\" \"npm run serve:chat\" \"npm run serve:mock\"",
     "build:all": "nx run-many --target=build --all"
   },
   "private": true,
