@@ -1,0 +1,45 @@
+.workbench {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  height: calc(100vh - 40px);
+}
+
+.pane {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 8px;
+  overflow: hidden;
+}
+
+.agents {
+  background: #fafafa;
+}
+
+.chat {
+  background: #fff;
+}
+
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .workbench {
+    grid-template-columns: 1fr; /* empilha agentes acima do chat */
+    height: auto;
+  }
+
+  .pane {
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .workbench {
+    gap: 12px;
+  }
+
+  .pane {
+    padding: 6px;
+  }
+}
+

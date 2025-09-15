@@ -1,0 +1,13 @@
+<div class="workbench">
+  <div class="pane agents">
+    <router-outlet name="agents"></router-outlet>
+  </div>
+  <div class="pane chat">
+    <router-outlet name="chat"></router-outlet>
+  </div>
+  
+  <!-- Fallback quando named outlets não estiverem carregados -->
+  <div class="placeholders" *ngIf="false"></div>
+</div>
+
+

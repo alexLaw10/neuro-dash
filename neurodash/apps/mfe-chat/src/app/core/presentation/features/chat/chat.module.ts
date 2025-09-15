@@ -8,13 +8,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateMessageUseCase } from '../../../application/user-cases/create-message.user-case';
 import { MessageService } from '../../../application/services/message.service';
 import { GetByIdMessageUseCase } from '../../../application/user-cases/get-by-id-message.user-case';
+import { AgentService } from '../../../application/services/agent.service';
 import { chatRoutes } from './chat.routes';
 
 
 @NgModule({
   declarations: [ChatComponent],
   imports: [CommonModule, HttpClientModule, ReactiveFormsModule, RouterModule.forChild(chatRoutes)],
-  providers: [...CORE_PROVIDERS, GetByIdMessageUseCase, CreateMessageUseCase, MessageService],
+  providers: [...CORE_PROVIDERS, GetByIdMessageUseCase, CreateMessageUseCase, MessageService, AgentService],
   exports: [ChatComponent]
 })
 

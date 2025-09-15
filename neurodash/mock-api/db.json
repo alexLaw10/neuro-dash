@@ -49,7 +49,348 @@
       }
     }
   ],
-  "chatMessages": [],
+  "chatMessages": [
+    {
+      "id": "z6qo0krik",
+      "agentId": "2",
+      "message": "dadasdsa",
+      "sender": "user",
+      "timestamp": "2025-09-15T01:21:24.153Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T01:21:24.153Z",
+      "updatedAt": "2025-09-15T01:21:24.153Z"
+    },
+    {
+      "id": "ahwc0ebzj",
+      "agentId": "2",
+      "message": "testando chat",
+      "sender": "user",
+      "timestamp": "2025-09-15T01:45:04.869Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T01:45:04.869Z",
+      "updatedAt": "2025-09-15T01:45:04.869Z"
+    },
+    {
+      "id": "ctv48o52l",
+      "agentId": "2",
+      "message": "bla bla bla",
+      "sender": "user",
+      "timestamp": "2025-09-15T01:45:49.991Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T01:45:49.991Z",
+      "updatedAt": "2025-09-15T01:45:49.991Z"
+    },
+    {
+      "id": "8ym3blre0",
+      "agentId": "2",
+      "message": "dasdasda",
+      "sender": "user",
+      "timestamp": "2025-09-15T01:52:29.955Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T01:52:29.955Z",
+      "updatedAt": "2025-09-15T01:52:29.955Z"
+    },
+    {
+      "id": "n80is3f01",
+      "agentId": "2",
+      "message": "dasdasd",
+      "sender": "user",
+      "timestamp": "2025-09-15T01:52:56.579Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T01:52:56.579Z",
+      "updatedAt": "2025-09-15T01:52:56.579Z"
+    },
+    {
+      "id": "po7eetz6i",
+      "agentId": "2",
+      "message": "dasdasd",
+      "sender": "user",
+      "timestamp": "2025-09-15T01:52:57.029Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T01:52:57.029Z",
+      "updatedAt": "2025-09-15T01:52:57.029Z"
+    },
+    {
+      "id": "f4jxei5dm",
+      "agentId": "2",
+      "message": "ddasd",
+      "sender": "user",
+      "timestamp": "2025-09-15T01:53:01.285Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T01:53:01.285Z",
+      "updatedAt": "2025-09-15T01:53:01.285Z"
+    },
+    {
+      "id": "hafht4qgx",
+      "agentId": "2",
+      "message": "adasdad",
+      "sender": "user",
+      "timestamp": "2025-09-15T01:53:07.109Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T01:53:07.109Z",
+      "updatedAt": "2025-09-15T01:53:07.109Z"
+    },
+    {
+      "id": "wav12kpfx",
+      "agentId": "2",
+      "message": "teste",
+      "sender": "user",
+      "timestamp": "2025-09-15T01:53:13.104Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T01:53:13.104Z",
+      "updatedAt": "2025-09-15T01:53:13.104Z"
+    },
+    {
+      "id": "0sy7t0eyy",
+      "agentId": "2",
+      "message": "dasda",
+      "sender": "user",
+      "timestamp": "2025-09-15T01:58:17.605Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T01:58:17.605Z",
+      "updatedAt": "2025-09-15T01:58:17.605Z"
+    },
+    {
+      "id": "ax21f01d6",
+      "agentId": "2",
+      "message": "teste",
+      "sender": "user",
+      "timestamp": "2025-09-15T02:05:23.737Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T02:05:23.737Z",
+      "updatedAt": "2025-09-15T02:05:23.737Z"
+    },
+    {
+      "id": "1xbdprqcr",
+      "agentId": "agent-3",
+      "message": "tedasdasd",
+      "sender": "user",
+      "timestamp": "2025-09-15T03:02:40.658Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T03:02:40.658Z",
+      "updatedAt": "2025-09-15T03:02:40.658Z"
+    },
+    {
+      "id": "igt57l9oh",
+      "agentId": "agent-2",
+      "message": "dasdadasd",
+      "sender": "user",
+      "timestamp": "2025-09-15T03:03:35.518Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T03:03:35.518Z",
+      "updatedAt": "2025-09-15T03:03:35.518Z"
+    },
+    {
+      "id": "z7716usya",
+      "agentId": "agent-2",
+      "message": "testadasdas",
+      "sender": "user",
+      "timestamp": "2025-09-15T03:04:18.579Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T03:04:18.579Z",
+      "updatedAt": "2025-09-15T03:04:18.579Z"
+    },
+    {
+      "id": "y3um1btic",
+      "agentId": "agent-4",
+      "message": "testando aplicacoa com chat",
+      "sender": "user",
+      "timestamp": "2025-09-15T03:09:48.379Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T03:09:48.379Z",
+      "updatedAt": "2025-09-15T03:09:48.379Z"
+    },
+    {
+      "id": "8sr43uz9n",
+      "agentId": "agent-2",
+      "message": "dasdsadasdasd",
+      "sender": "user",
+      "timestamp": "2025-09-15T03:19:13.986Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T03:19:13.986Z",
+      "updatedAt": "2025-09-15T03:19:13.986Z"
+    },
+    {
+      "id": "dpn1f4add",
+      "agentId": "agent-2",
+      "message": "dasdasdasdad",
+      "sender": "user",
+      "timestamp": "2025-09-15T10:29:13.087Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T10:29:13.087Z",
+      "updatedAt": "2025-09-15T10:29:13.087Z"
+    },
+    {
+      "id": "ebds28l7b",
+      "agentId": "agent-2",
+      "message": "dasd",
+      "sender": "user",
+      "timestamp": "2025-09-15T10:29:36.627Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T10:29:36.627Z",
+      "updatedAt": "2025-09-15T10:29:36.627Z"
+    },
+    {
+      "id": "1dpmcgpn5",
+      "agentId": "agent-2",
+      "message": "dasdas",
+      "sender": "user",
+      "timestamp": "2025-09-15T10:32:21.700Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T10:32:21.700Z",
+      "updatedAt": "2025-09-15T10:32:21.700Z"
+    },
+    {
+      "id": "ww0hk4224",
+      "agentId": "agent-2",
+      "message": "Olá agente, me traga métricas!",
+      "sender": "user",
+      "timestamp": "2025-09-15T10:36:24.427Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T10:36:24.427Z",
+      "updatedAt": "2025-09-15T10:36:24.427Z"
+    },
+    {
+      "id": "fjr9gi3q7",
+      "agentId": "agent-2",
+      "message": "dadasda",
+      "sender": "user",
+      "timestamp": "2025-09-15T10:48:52.778Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T10:48:52.778Z",
+      "updatedAt": "2025-09-15T10:48:52.778Z"
+    },
+    {
+      "id": "tm9hgsdzb",
+      "agentId": "agent-4",
+      "message": "dasdsa",
+      "sender": "user",
+      "timestamp": "2025-09-15T11:15:01.311Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T11:15:01.311Z",
+      "updatedAt": "2025-09-15T11:15:01.311Z"
+    },
+    {
+      "id": "fdzrfkew3",
+      "agentId": "agent-2",
+      "message": "dasdsada",
+      "sender": "user",
+      "timestamp": "2025-09-15T11:17:57.929Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T11:17:57.929Z",
+      "updatedAt": "2025-09-15T11:17:57.929Z"
+    },
+    {
+      "id": "hvkt28tnn",
+      "agentId": "agent-2",
+      "message": "ddasdasda",
+      "sender": "user",
+      "timestamp": "2025-09-15T11:19:46.305Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T11:19:46.305Z",
+      "updatedAt": "2025-09-15T11:19:46.305Z"
+    },
+    {
+      "id": "s3jy3g5ay",
+      "agentId": "agent-2",
+      "message": "ddasdasd",
+      "sender": "user",
+      "timestamp": "2025-09-15T11:45:39.397Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T11:45:39.397Z",
+      "updatedAt": "2025-09-15T11:45:39.397Z"
+    },
+    {
+      "id": "893buzxkk",
+      "agentId": "agent-2",
+      "message": "teste",
+      "sender": "user",
+      "timestamp": "2025-09-15T11:54:51.927Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T11:54:51.927Z",
+      "updatedAt": "2025-09-15T11:54:51.927Z"
+    },
+    {
+      "id": "53rsw51gk",
+      "agentId": "agent-4",
+      "message": "dasdasda",
+      "sender": "user",
+      "timestamp": "2025-09-15T11:58:03.505Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T11:58:03.505Z",
+      "updatedAt": "2025-09-15T11:58:03.505Z"
+    },
+    {
+      "id": "ucxqgktde",
+      "agentId": "agent-2",
+      "message": "eqweqweq",
+      "sender": "user",
+      "timestamp": "2025-09-15T12:27:46.260Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T12:27:46.260Z",
+      "updatedAt": "2025-09-15T12:27:46.260Z"
+    },
+    {
+      "id": "4y37zyzw8",
+      "agentId": "agent-2",
+      "message": "dasdasda",
+      "sender": "user",
+      "timestamp": "2025-09-15T12:47:38.382Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T12:47:38.382Z",
+      "updatedAt": "2025-09-15T12:47:38.382Z"
+    },
+    {
+      "id": "200wy5m31",
+      "agentId": "agent-2",
+      "message": "dasdasdasdsad",
+      "sender": "user",
+      "timestamp": "2025-09-15T12:50:45.076Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T12:50:45.076Z",
+      "updatedAt": "2025-09-15T12:50:45.076Z"
+    },
+    {
+      "id": "jwl3grpbi",
+      "agentId": "agent-4",
+      "message": "dasdasda",
+      "sender": "user",
+      "timestamp": "2025-09-15T12:52:16.830Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T12:52:16.830Z",
+      "updatedAt": "2025-09-15T12:52:16.830Z"
+    },
+    {
+      "id": "6bbe8eo0p",
+      "agentId": "agent-4",
+      "message": "asdasdasd",
+      "sender": "user",
+      "timestamp": "2025-09-15T12:54:39.851Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T12:54:39.851Z",
+      "updatedAt": "2025-09-15T12:54:39.851Z"
+    },
+    {
+      "id": "pm3szgq9b",
+      "agentId": "agent-2",
+      "message": "dasdasdasda",
+      "sender": "user",
+      "timestamp": "2025-09-15T13:01:07.171Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T13:01:07.171Z",
+      "updatedAt": "2025-09-15T13:01:07.171Z"
+    },
+    {
+      "id": "wcaq6lbzz",
+      "agentId": "agent-2",
+      "message": "dasdasdasdasd",
+      "sender": "user",
+      "timestamp": "2025-09-15T13:01:20.278Z",
+      "isTyping": false,
+      "createdAt": "2025-09-15T13:01:20.278Z",
+      "updatedAt": "2025-09-15T13:01:20.278Z"
+    }
+  ],
   "agentMetrics": [
     {
       "agentId": "agent-1",

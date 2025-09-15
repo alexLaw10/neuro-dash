@@ -1,0 +1,208 @@
+.agents-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.agents-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.polling-indicator {
+  background: #e8f5e8;
+  color: #2e7d32;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.agents-header h2 {
+  margin: 0;
+  color: #333;
+}
+
+.refresh-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.refresh-btn:hover {
+  background: #0056b3;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.agents-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.agents-table th {
+  background: #f8f9fa;
+  padding: 12px 8px;
+  text-align: left;
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.agents-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #dee2e6;
+  vertical-align: top;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .agents-container {
+    padding: 12px;
+  }
+
+  .agents-table th,
+  .agents-table td {
+    padding: 10px 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .agents-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .agents-table {
+    font-size: 14px;
+  }
+
+  .agent-actions button {
+    padding: 6px 10px;
+    font-size: 0.85em;
+  }
+}
+
+.agent-row:hover {
+  background: #f8f9fa;
+}
+
+.agent-id {
+  font-family: monospace;
+  font-size: 0.9em;
+  color: #6c757d;
+}
+
+.agent-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.agent-type {
+  text-transform: capitalize;
+  color: #6c757d;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-online {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-busy {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-offline {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.status-error {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.agent-actions {
+  white-space: nowrap;
+}
+
+.agent-actions button {
+  margin-right: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.2s;
+}
+
+.btn-chat {
+  background: #28a745;
+  color: white;
+}
+
+.btn-chat:hover {
+  background: #218838;
+}
+
+.btn-details {
+  background: #17a2b8;
+  color: white;
+}
+
+.btn-details:hover {
+  background: #138496;
+}
+
+.btn-delete {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #c82333;
+}
+
+.no-agents {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+}
+
+.no-agents p {
+  margin-bottom: 20px;
+  font-size: 1.1em;
+}

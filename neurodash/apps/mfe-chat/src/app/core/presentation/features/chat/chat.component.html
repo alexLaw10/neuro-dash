@@ -1,17 +1,84 @@
 <div class="chat-container">
-  <h2>🚀 Chat Angular MFE</h2>
-  <p>Este é o micro-frontend Angular funcionando dentro do shell!</p>
+  <div class="chat-header">
+    <h2>🚀 Chat Angular MFE</h2>
+    <div class="agent-info">
+      <span class="agent-label">Agente:</span>
+      <span class="agent-id">{{ agentInfo?.name || agentId }}</span>
+      <span class="agent-status" [class.offline]="isAgentOffline" [class.online]="!isAgentOffline">
+        {{ isAgentOffline ? '🔴 Offline' : '🟢 Online' }}
+      </span>
+      <span class="message-count">({{ messages.length }} mensagens)</span>
+    </div>
+  </div>
   <div class="chat-interface">
     <div class="message-list">
-      <div class="message">Olá! Como posso ajudar você hoje?</div>
-      <div class="message user">Quero saber sobre o projeto</div>
-      <div class="message">Claro! Este é um projeto de micro-frontends usando Module Federation.</div>
+      <div *ngIf="isLoading" class="loading">Carregando mensagens...</div>
+      <div *ngIf="!isLoading && messages.length === 0" class="no-messages">
+        <div *ngIf="isAgentOffline" class="offline-message">
+          <p>🔴 Agente offline</p>
+          <p>Você pode visualizar o histórico, mas não pode enviar novas mensagens.</p>
+        </div>
+        <div *ngIf="!isAgentOffline">
+          Nenhuma mensagem ainda. Inicie a conversa!
+        </div>
+      </div>
+      <div 
+        *ngFor="let message of messages" 
+        class="message" 
+        [class.user]="message.sender === 'user'"
+        [class.agent]="message.sender === 'agent'"
+      >
+        <div class="message-header">
+          <span class="sender-name">{{ message.sender === 'user' ? 'Você' : 'Agente' }}</span>
+          <span class="message-id">#{{ message.id }}</span>
+        </div>
+        <div class="message-content">{{ message.message }}</div>
+        <div class="message-footer">
+          <span class="message-time">{{ message.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+          <span *ngIf="message.isTyping" class="typing-indicator">Digitando...</span>
+        </div>
+        <div class="message-debug" *ngIf="false">
+          <small>
+            AgentId: {{ message.agentId }} | 
+            Created: {{ message.createdAt | date:'short' }} | 
+            Updated: {{ message.updatedAt | date:'short' }}
+          </small>
+        </div>
+      </div>
+      
+      <!-- Indicador de digitação do agente -->
+      <div *ngIf="isAgentTyping" class="message agent typing-message">
+        <div class="typing-indicator">
+          <span class="typing-dots">
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+          </span>
+          Agente está digitando...
+        </div>
+      </div>
     </div>
-    <div class="input-area">
-      <form [formGroup]="messageForm">
-        <input formControlName="message" type="text" placeholder="Digite sua mensagem..." class="message-input">
-        <button class="send-button" (click)="sendMessage()">Enviar</button>
+    <div class="input-area" [class.disabled]="isAgentOffline">
+      <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+        <input 
+          formControlName="message" 
+          type="text" 
+          [placeholder]="isAgentOffline ? 'Agente offline - não é possível enviar mensagens' : 'Digite sua mensagem...'" 
+          class="message-input"
+          [disabled]="isLoading || isAgentOffline"
+        >
+        <button 
+          type="submit" 
+          class="send-button" 
+          [disabled]="isLoading || !messageForm.value.message || isAgentOffline"
+          [title]="isAgentOffline ? 'Agente offline - não é possível enviar mensagens' : 'Enviar mensagem'"
+        >
+          {{ isAgentOffline ? '🔴' : 'Enviar' }}
+        </button>
       </form>
+      <div *ngIf="isAgentOffline" class="offline-notice">
+        <small>🔴 Agente offline - Chat somente para leitura</small>
+      </div>
     </div>
   </div>
 </div>

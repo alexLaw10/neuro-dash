@@ -4,6 +4,6 @@ import { Observable } from "rxjs";
 
 export interface MessagePort {
     create(message: MessageEntity, id: string): Observable<MessageEntity>;
-    findById(id: string): Observable<MessageEntity | null>;
+    findById(id: string): Observable<MessageEntity[] | null>;
     
 }   

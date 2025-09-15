@@ -1,31 +1,28 @@
 <div class="agents-container">
   <div class="agents-header">
     <h2>Lista de Agentes</h2>
-    <button (click)="loadAgents()" class="refresh-btn">Atualizar</button>
+    <div class="header-controls">
+      <button (click)="loadAgents()" class="refresh-btn">Atualizar</button>
+    </div>
   </div>
 
   <div class="table-container" *ngIf="agents.length > 0; else noAgents">
     <table class="agents-table">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Nome</th>
           <th>Tipo</th>
           <th>Status</th>
           <th>Última Atividade</th>
           <th>Tarefas Completadas</th>
-          <th>Taxa de Sucesso</th>
           <th>Tempo Médio de Resposta</th>
-          <th>Max Tarefas Concorrentes</th>
-          <th>Timeout</th>
-          <th>Tentativas de Retry</th>
           <th>Prioridade</th>
           <th>Ações</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let agent of agents" class="agent-row">
-          <td class="agent-id">{{ agent.id }}</td>
+        
           <td class="agent-name">{{ agent.name }}</td>
           <td class="agent-type">{{ agent.type }}</td>
           <td class="agent-status">
@@ -37,19 +34,15 @@
             {{ agent.lastActivity | date:'dd/MM/yyyy HH:mm' }}
           </td>
           <td class="agent-tasks">{{ agent.tasksCompleted | number }}</td>
-          <td class="agent-success">{{ (agent.successRate * 100).toFixed(1) }}%</td>
+     
           <td class="agent-response">{{ agent.averageResponseTime }}s</td>
-          <td class="agent-max-tasks">{{ agent.config.maxConcurrentTasks }}</td>
-          <td class="agent-timeout">{{ agent.config.timeout / 1000 }}s</td>
-          <td class="agent-retry">{{ agent.config.retryAttempts }}</td>
+
           <td class="agent-priority">{{ agent.config.priority }}</td>
           <td class="agent-actions">
-            <button (click)="detailAgent(agent.id)" class="btn-details">
-              Detalhes
+            <button (click)="openChat(agent.id)" class="btn-chat">
+              Chat
             </button>
-            <button (click)="deleteAgent(agent.id)" class="btn-delete">
-              Deletar
-            </button>
+            
           </td>
         </tr>
       </tbody>

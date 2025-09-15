@@ -8,7 +8,7 @@ import { MessageRepository } from '../../domain/repository/message.repository.in
 export class GetByIdMessageUseCase {
 constructor(@Inject(MESSAGE_REPOSITORY_TOKEN) private messagePort: MessageRepository) {}
 
-    public execute(id: string): Observable<MessageEntity | null> {
+    public execute(id: string): Observable<MessageEntity[] | null> {
         if (!id) {
             throw new Error('Message ID is required');
         }

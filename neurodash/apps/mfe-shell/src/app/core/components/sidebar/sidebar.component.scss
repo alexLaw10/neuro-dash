@@ -37,6 +37,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  background: #f8f9fa;
+  z-index: 1;
   
   h2 {
     margin: 0;
@@ -110,6 +114,11 @@
     &:not(.sidebar-open) {
       transform: translateX(-100%);
     }
+  }
+
+  .sidebar-menu {
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
   }
 }
 

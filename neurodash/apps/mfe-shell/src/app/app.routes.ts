@@ -15,21 +15,22 @@ export const appRoutes: Route[] = [
         path: 'chat',
         loadChildren: () =>
           import('mfe-chat/Module').then((m) => {
-            console.log('mfe-chat carregado com sucesso:', m);
             return m.RemoteEntryModule;
           }).catch((err) => {
-            console.error('Erro ao carregar mfe-chat:', err);
             throw err;
           }),
+      },
+      {
+        path: 'workbench',
+        loadChildren: () =>
+          import('./features/workbench/workbench.module').then((m) => m.WorkbenchModule)
       },
       {
         path: 'agents',
         loadChildren: () =>
           import('mfe-agents/Module').then((m) => {
-            console.log('mfe-agents carregado com sucesso:', m);
             return m.RemoteEntryModule;
           }).catch((err) => {
-            console.error('Erro ao carregar mfe-agents:', err);
             throw err;
           }),
       },

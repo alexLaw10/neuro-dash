@@ -16,7 +16,7 @@ export class MessageAdapter implements MessagePort {
         return this.createMessageUseCase.execute(message, id);
     }
 
-    public findById(id: string): Observable<MessageEntity | null> {
+    public findById(id: string): Observable<MessageEntity[] | null> {
         return this.getByIdMessageUseCase.execute(id);
     }
 }

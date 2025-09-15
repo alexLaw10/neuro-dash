@@ -3,7 +3,7 @@
   
   <main class="main-content" [class.main-content-mobile]="isMobile" [class.main-content-sidebar-open]="isSidebarOpen && !isMobile">
     <header class="main-header" *ngIf="isMobile">
-      <button class="mobile-menu-toggle" (click)="sidebar.toggleSidebar()">
+      <button class="mobile-menu-toggle" (click)="sidebar.toggleSidebar()" aria-label="Abrir menu">
         <span class="hamburger"></span>
         <span class="hamburger"></span>
         <span class="hamburger"></span>

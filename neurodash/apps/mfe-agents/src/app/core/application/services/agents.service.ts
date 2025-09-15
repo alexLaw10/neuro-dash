@@ -24,6 +24,8 @@ export class AgentsService {
     return this.agentsPort.deleteAgent(id);
   }
 
+  // Removido watchAgents - agora usamos polling visual no componente
+
   private agentToDto(agent: Agent): Agent {
     return {  
       id: agent.id,

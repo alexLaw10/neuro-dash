@@ -26,7 +26,7 @@ export class MessageService {
     return this.messagePort.create(message, agentId);
    }
 
-   public findById(id: string): Observable<MessageEntity | null> {
+   public findById(id: string): Observable<MessageEntity[] | null> {
     return this.messagePort.findById(id);
    }
 

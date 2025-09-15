@@ -36,6 +36,20 @@ server.use((req, res, next) => {
   next();
 });
 
+// Middleware de simulação removido - agora usamos polling visual no frontend
+
+// Middleware customizado para GET /api/agents/:id/chatMessages
+server.get('/api/agents/:id/chatMessages', (req, res) => {
+  const agentId = req.params.id;
+  
+  const db = router.db;
+  const messages = db.get('chatMessages')
+    .filter({ agentId })
+    .value();
+  
+  res.json(messages);
+});
+
 // Middleware customizado para POST /api/agents/:id/chat
 server.post('/api/agents/:id/chat', (req, res) => {
   const { message } = req.body;
@@ -108,6 +122,7 @@ server.listen(PORT, () => {
   console.log(`   GET    /api/agents - Lista de agentes`);
   console.log(`   GET    /api/agents/:id - Detalhes do agente`);
   console.log(`   GET    /api/agents/:id/metrics - Métricas do agente`);
+  console.log(`   GET    /api/agents/:id/chatMessages - Mensagens do chat`);
   console.log(`   POST   /api/agents/:id/chat - Enviar mensagem`);
   console.log(`   PUT    /api/agents/:id/config - Atualizar configuração`);
 });
