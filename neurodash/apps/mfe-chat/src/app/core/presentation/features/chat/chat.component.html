@@ -1,0 +1,17 @@
+<div class="chat-container">
+  <h2>🚀 Chat Angular MFE</h2>
+  <p>Este é o micro-frontend Angular funcionando dentro do shell!</p>
+  <div class="chat-interface">
+    <div class="message-list">
+      <div class="message">Olá! Como posso ajudar você hoje?</div>
+      <div class="message user">Quero saber sobre o projeto</div>
+      <div class="message">Claro! Este é um projeto de micro-frontends usando Module Federation.</div>
+    </div>
+    <div class="input-area">
+      <form [formGroup]="messageForm">
+        <input formControlName="message" type="text" placeholder="Digite sua mensagem..." class="message-input">
+        <button class="send-button" (click)="sendMessage()">Enviar</button>
+      </form>
+    </div>
+  </div>
+</div>

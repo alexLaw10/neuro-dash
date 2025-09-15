@@ -10,6 +10,7 @@ export interface AgentConfig {
     retryAttempts: number;
     priority: Priority;
   }
+  
 export class Agent extends BaseEntity {
     public readonly name: string;
     public readonly lastActivity: Date;

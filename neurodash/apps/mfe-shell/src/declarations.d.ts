@@ -3,18 +3,7 @@ declare module 'mfe-agents/Module' {
 }
 
 declare module 'mfe-chat/Module' {
-  interface ReactRoot {
-    unmount(): void;
-  }
-  
-  interface RemoteModule {
-    mount: (container: HTMLElement) => ReactRoot;
-    unmount: (root: ReactRoot) => void;
-  }
-  
-  export const mount: (container: HTMLElement) => ReactRoot;
-  export const unmount: (root: ReactRoot) => void;
-  export default RemoteModule;
+  export const RemoteEntryModule: any;
 }
 
 // Declaração do Web Component

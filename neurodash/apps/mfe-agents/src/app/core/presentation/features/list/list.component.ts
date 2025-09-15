@@ -23,6 +23,7 @@ export class ListComponent implements OnInit {
       error: (error) => console.error(error)
     });
   }
+
   public detailAgent(id: string): void {
     this.agentsService.getAgentById(id).subscribe({
       next: (agent) => this.agent = agent,
@@ -36,5 +37,4 @@ export class ListComponent implements OnInit {
       error: (error) => console.error(error)
     });
   }
-   
 }

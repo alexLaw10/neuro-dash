@@ -1,27 +1,13 @@
 module.exports = {
-  name: 'mfe_chat',
+  name: 'mfe-chat',
   filename: 'remoteEntry.mjs',
   exposes: {
-    './Module': './src/remote-entry.tsx',
+    './Module': 'apps/mfe-chat/src/app/remote-entry/entry.module.ts',
   },
-  shared: {
-    react: { 
-      singleton: true, 
-      strictVersion: false, 
-      requiredVersion: '^18.2.0',
-      eager: false
-    },
-    'react-dom': { 
-      singleton: true, 
-      strictVersion: false, 
-      requiredVersion: '^18.2.0',
-      eager: false
-    },
-    'react-router-dom': { 
-      singleton: true, 
-      strictVersion: false, 
-      requiredVersion: '^6.11.2',
-      eager: false
-    },
-  },
+  shared: (libraryName, sharedConfig) => {
+    if (['@angular/core', '@angular/common', '@angular/router', '@angular/platform-browser', '@angular/platform-browser-dynamic', 'rxjs', 'zone.js'].includes(libraryName)) {
+      return { singleton: true, strictVersion: false, requiredVersion: '^16.2.0' };
+    }
+    return sharedConfig;
+  }
 };

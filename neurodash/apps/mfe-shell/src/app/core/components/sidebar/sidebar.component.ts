@@ -18,6 +18,7 @@ export class SidebarComponent implements OnInit {
       { label: 'Chat', route: '/chat', icon: 'chat' },
     { label: 'Configurações', route: '/settings', icon: 'settings' }
   ];
+  
 
   constructor(private router: Router) {}
 
