@@ -13,33 +13,147 @@ Plataforma com Micro Frontends (Angular) organizada em monorepo Nx, seguindo pri
 - `mfe-agents`: lista de agentes (grid), cálculo de métricas na UI
 - `mfe-chat`: chat por agente, envio/recebimento simulado, integração por eventos
 
-## Organização (Hexagonal nas MFEs)
-Estrutura típica por MFE (ex.: `mfe-chat`):
-- `core/domain`: entidades, enums, contratos de domínio
-- `core/application`: ports, services, use-cases, adapters (conversão DTO/HTTP)
-- `core/infrastructure`: repositories/concrete adapters, DI tokens/providers
-- `core/presentation`: components Angular (UI), rotas e estilos
+## Organização (Arquitetura Hexagonal nas MFEs)
 
-Princípios aplicados:
-- Domínio isolado (sem dependência de Angular)
-- Application depende do domínio e define ports
-- Infrastructure implementa ports/adapters
-- Presentation injeta services/ports via DI, sem conhecer infraestrutura
+### Estrutura por Camadas
+
+Cada MFE (`mfe-agents`, `mfe-chat`) segue a arquitetura hexagonal com a seguinte organização:
+
+#### 🏛️ **Domain Layer** (`core/domain/`)
+- **Entidades**: modelos de negócio puros (ex: `Agent`, `Message`)
+- **Enums**: constantes de domínio (ex: `AgentStatus`, `MessageType`)
+- **Value Objects**: objetos imutáveis com lógica de negócio
+- **Contratos**: interfaces de domínio (ex: `IAgentRepository`, `IMessageRepository`)
+- **Regras de Negócio**: validações e cálculos específicos do domínio
+
+#### ⚙️ **Application Layer** (`core/application/`)
+- **Ports**: interfaces que definem contratos (ex: `IAgentService`, `IMessageService`)
+- **Services**: implementações dos casos de uso e lógica de aplicação
+- **Use Cases**: orquestração de operações complexas
+- **DTOs**: objetos de transferência de dados
+- **Adapters**: conversão entre DTOs e entidades de domínio
+
+#### 🔌 **Infrastructure Layer** (`core/infrastructure/`)
+- **Repositories**: implementações concretas dos ports de domínio
+- **HTTP Clients**: comunicação com APIs externas
+- **Storage**: persistência local (localStorage, IndexedDB)
+- **DI Providers**: configuração de injeção de dependência
+- **External Services**: integração com bibliotecas externas
+
+#### 🎨 **Presentation Layer** (`core/presentation/`)
+- **Components**: componentes Angular (UI)
+- **Routes**: configuração de rotas
+- **Styles**: SCSS e estilos específicos
+- **Directives**: diretivas customizadas
+- **Pipes**: transformadores de dados para apresentação
+
+### Princípios Aplicados
+
+#### 🔄 **Inversão de Dependência**
+```typescript
+// ❌ Ruim: Presentation conhece Infrastructure
+constructor(private httpClient: HttpClient) {}
+
+// ✅ Bom: Presentation depende apenas de Ports
+constructor(private messageService: IMessageService) {}
+```
+
+#### 🏝️ **Isolamento do Domínio**
+- Domain não possui dependências externas
+- Zero imports de Angular ou bibliotecas externas
+- Regras de negócio puras e testáveis
+
+#### 🔌 **Ports & Adapters**
+- **Ports**: interfaces que definem o que a aplicação precisa
+- **Adapters**: implementações que conectam com o mundo externo
+- **Flexibilidade**: trocar adapters sem afetar o domínio
+
+#### 📦 **Injeção de Dependência**
+```typescript
+// providers.ts
+export const providers = [
+  { provide: IMessageService, useClass: MessageService },
+  { provide: IMessageRepository, useClass: MessageRepository }
+];
+```
+
+### Exemplo Prático (mfe-chat)
+
+```
+mfe-chat/src/app/core/
+├── domain/
+│   ├── entities/
+│   │   ├── message.entity.ts      # Message(id, content, timestamp, agentId)
+│   │   └── agent.entity.ts        # Agent(id, name, status)
+│   ├── enums/
+│   │   ├── message-type.enum.ts   # USER, AGENT, SYSTEM
+│   │   └── agent-status.enum.ts   # ONLINE, OFFLINE, BUSY
+│   └── contracts/
+│       ├── message.repository.ts  # IMessageRepository
+│       └── message.service.ts     # IMessageService
+├── application/
+│   ├── services/
+│   │   ├── message.service.ts     # Implementa IMessageService
+│   │   └── communication.service.ts # Comunicação entre MFEs
+│   ├── ports/
+│   │   └── message.port.ts        # Define contratos
+│   └── adapters/
+│       └── message.adapter.ts     # Conversão DTO ↔ Entity
+├── infrastructure/
+│   ├── repositories/
+│   │   └── message.repository.ts  # Implementa IMessageRepository
+│   └── providers/
+│       └── di.providers.ts        # Configuração DI
+└── presentation/
+    ├── features/
+    │   └── chat/
+    │       ├── chat.component.ts  # UI Component
+    │       ├── chat.component.html
+    │       └── chat.component.scss
+    └── shared/
+        └── message-list/
+            └── message-list.component.ts
+```
+
+### Benefícios da Arquitetura Hexagonal
+
+1. **🧪 Testabilidade**: Domain e Application são facilmente testáveis
+2. **🔄 Flexibilidade**: Trocar implementações sem afetar o domínio
+3. **📈 Escalabilidade**: Adicionar novos adapters sem modificar o core
+4. **🔧 Manutenibilidade**: Separação clara de responsabilidades
+5. **🚀 Desenvolvimento**: Equipes podem trabalhar em camadas independentes
 
 ## Diagrama (Arquitetura Hexagonal por MFE)
 ```mermaid
-flowchart LR
-  UI[Presentation]
-  APP[Application]
-  PORTS[(Ports)]
-  ADP[Adapters]
-  DOM[Domain]
+flowchart TB
+  subgraph "🎨 Presentation Layer"
+    UI["Angular Components<br/>• ChatComponent<br/>• ListComponent<br/>• Directives & Pipes"]
+  end
+  
+  subgraph "⚙️ Application Layer"
+    APP["Services & Use Cases<br/>• MessageService<br/>• CommunicationService<br/>• DTOs & Adapters"]
+    PORTS[("🔌 Ports<br/>• IMessageService<br/>• IAgentService<br/>• IMessageRepository")]
+  end
+  
+  subgraph "🏛️ Domain Layer"
+    DOM["Entities & Business Rules<br/>• Message Entity<br/>• Agent Entity<br/>• Enums & Value Objects"]
+  end
+  
+  subgraph "🔌 Infrastructure Layer"
+    ADP["Adapters & External Services<br/>• HTTP Repositories<br/>• Local Storage<br/>• DI Providers"]
+  end
 
-  UI --> APP
-  APP --> PORTS
-  ADP --> PORTS
-  APP --> DOM
-  UI --> DOM
+  UI -->|"Dependency Injection"| APP
+  APP -->|"Implements"| PORTS
+  ADP -->|"Implements"| PORTS
+  APP -->|"Uses"| DOM
+  UI -->|"Uses (Optional)"| DOM
+  
+  style UI fill:#e1f5fe
+  style APP fill:#f3e5f5
+  style DOM fill:#e8f5e8
+  style ADP fill:#fff3e0
+  style PORTS fill:#ffebee
 ```
 
 ## Arquitetura Geral (MFEs + Shell)
