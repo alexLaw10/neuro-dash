@@ -113,7 +113,6 @@ export class ChatComponent implements OnInit, OnDestroy {
             lastActivity: new Date(),
             sender: 'user',
             timestamp: new Date(),
-            teste: 'dasda'
           } as const;
           window.dispatchEvent(new CustomEvent('chat:messageSent', { detail: payload }));
           
