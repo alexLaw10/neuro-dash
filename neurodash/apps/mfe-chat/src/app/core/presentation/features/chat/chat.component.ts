@@ -2,7 +2,7 @@ import { MessageService } from '../../../application/services/message.service';
 import { AgentService } from '../../../application/services/agent.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MessageEntity } from '../../../domain/entity/messsage.entity';
 import { AgentInfo } from '../../../domain/entity/agent-info.entity';
@@ -29,6 +29,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     private MessageService: MessageService,
     private AgentService: AgentService,
     private route: ActivatedRoute,
+    private router: Router,
     private communicationService: CommunicationService
   ) {
     this.messageForm = this.fb.group({
@@ -37,19 +38,17 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    
-    // Obtém o agentId dos query parameters
-    this.route.queryParams.subscribe(params => {
-      if (params['agentId']) {
-        this.agentId = params['agentId'];
+    // Observa query params a partir da raiz do router para garantir atualização ao trocar de agente
+    this.router.routerState.root.queryParams.subscribe(params => {
+      const newAgentId = params['agentId'];
+      if (newAgentId && newAgentId !== this.agentId) {
+        this.agentId = newAgentId;
       }
       this.loadAgentInfo();
       this.loadMessages();
-      
-      // inicia polling de status do agente
-      if (this.statusSub) {
-        this.statusSub.unsubscribe?.();
-      }
+
+      // reinicia polling de status do agente atual
+      this.statusSub?.unsubscribe?.();
       this.statusSub = this.AgentService.watchAgentStatus(this.agentId, 4000)
         .subscribe((status) => {
           this.isAgentOffline = status === AgentStatus.OFFLINE;

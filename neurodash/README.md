@@ -159,32 +159,111 @@ flowchart TB
 ## Arquitetura Geral (MFEs + Shell)
 ```mermaid
 flowchart TB
-  subgraph Shell
-    ROUTER[Router + Workbench Outlets]
-    SIDEBAR[Sidebar/Layout]
+  subgraph Shell["🏠 Shell (Container)"]
+    ROUTER["Router + Workbench Outlets<br/>• agents: /workbench/(agents:agents)<br/>• chat: /workbench/(chat:chat)"]
+    SIDEBAR["Sidebar/Layout<br/>• Navegação principal<br/>• Layout responsivo"]
   end
-  subgraph MFE-Agents
-    LIST[ListComponent]
+  
+  subgraph MFE-Agents["🤖 MFE-Agents"]
+    LIST["ListComponent<br/>• Grid de agentes<br/>• Métricas em tempo real<br/>• Event listener"]
+    AGENT_SVC["AgentService<br/>• CRUD de agentes<br/>• Cálculo de métricas"]
   end
-  subgraph MFE-Chat
-    CHAT[ChatComponent]
+  
+  subgraph MFE-Chat["💬 MFE-Chat"]
+    CHAT["ChatComponent<br/>• Interface de chat<br/>• Simulação de respostas<br/>• Event dispatcher"]
+    MSG_SVC["MessageService<br/>• Gerenciamento de mensagens<br/>• Comunicação entre MFEs"]
+    STATUS_POLL["Status Polling<br/>• watchAgentStatus()<br/>• Timer: 4s interval<br/>• Observable stream"]
   end
-  ROUTER -- Module Federation --> LIST
-  ROUTER -- Module Federation --> CHAT
-  CHAT -- CustomEvent(chat:messageSent) --> LIST
+  
+  subgraph MockAPI["🔧 Mock API"]
+    API["json-server<br/>• Agents endpoint<br/>• Messages endpoint<br/>• Port 3001"]
+  end
+
+  ROUTER -- "Module Federation<br/>Dynamic imports" --> LIST
+  ROUTER -- "Module Federation<br/>Dynamic imports" --> CHAT
+  
+  CHAT -- "CustomEvent<br/>chat:messageSent<br/>{agentId, status, timestamp}" --> LIST
+  CHAT -- "HTTP Requests<br/>GET/POST messages" --> API
+  LIST -- "HTTP Requests<br/>GET agents" --> API
+  
+  STATUS_POLL -- "Polling every 4s<br/>getAgentById()" --> API
+  STATUS_POLL --> CHAT
+  
+  LIST -- "fromEvent(window)<br/>RxJS Observable" --> LIST
+  
+  style Shell fill:#e3f2fd
+  style MFE-Agents fill:#f3e5f5
+  style MFE-Chat fill:#e8f5e8
+  style MockAPI fill:#fff3e0
 ```
 
-## Comunicação entre MFEs
-- Evento global do `window` para sincronizar Chat → Lista (baixo acoplamento, sem imports cruzados):
-  - `chat:messageSent` (detail: `{ agentId, status, lastActivity, sender, timestamp }`)
-- `mfe-agents` escuta com `fromEvent(window, 'chat:messageSent')` e atualiza somente a linha do agente correspondente, executando em `NgZone` para refletir na UI.
+## 🔄 Comunicação entre MFEs
 
-## Polling e Atualizações de Estado
-- Estado do agente (status/última atividade) e média de resposta são atualizados por eventos do chat (sem polling de rede).
-- Cálculo de média de resposta na UI (simples e determinístico):
-  - Armazena `lastUserMessageAtByAgent[agentId]` ao enviar mensagem
-  - Ao receber resposta, calcula `deltaSeconds = (resposta - última mensagem do usuário)`
-  - Mantém `sum` e `count` por agente e exibe `Math.round(sum/count)`
+### Event-Driven Architecture
+- **Evento Global**: `chat:messageSent` via `window.dispatchEvent()`
+- **Payload**: `{ agentId, status, lastActivity, sender, timestamp }`
+- **Baixo Acoplamento**: Sem imports cruzados entre MFEs
+
+### Fluxo de Comunicação
+```typescript
+// mfe-chat: Dispara evento
+window.dispatchEvent(new CustomEvent('chat:messageSent', { 
+  detail: { agentId, status: 'busy', lastActivity: new Date() } 
+}));
+
+// mfe-agents: Escuta evento
+fromEvent<CustomEvent>(window, 'chat:messageSent').subscribe(event => {
+  const { agentId, status, lastActivity } = event.detail;
+  this.updateAgentFromPayload(agentId, status, lastActivity);
+});
+```
+
+## ⏱️ Polling e Atualizações de Estado
+
+### Polling de Status do Agente
+```typescript
+// AgentService.watchAgentStatus()
+public watchAgentStatus(id: string, intervalMs = 4000): Observable<AgentStatus> {
+  return timer(0, intervalMs).pipe(
+    switchMap(() => this.getAgentById(id)),
+    map(agent => agent?.status ?? AgentStatus.OFFLINE),
+    distinctUntilChanged(),
+    shareReplay({ bufferSize: 1, refCount: true })
+  );
+}
+```
+
+**Características do Polling:**
+- ⏰ **Intervalo**: 4 segundos (configurável)
+- 🔄 **Observable Stream**: RxJS com `timer()`
+- 🎯 **DistinctUntilChanged**: Evita emissões desnecessárias
+- 📦 **ShareReplay**: Cache do último valor para múltiplos subscribers
+
+### Cálculo de Métricas em Tempo Real
+
+#### 📊 Média de Tempo de Resposta
+```typescript
+// Armazena timestamp da mensagem do usuário
+this.lastUserMessageAtByAgent[agentId] = Date.now();
+
+// Calcula delta quando agente responde
+const deltaSeconds = Math.round((agentResponseTime - userMessageTime) / 1000);
+this.responseSumSecondsByAgent[agentId] += deltaSeconds;
+this.responseCountByAgent[agentId] += 1;
+const average = Math.round(sum / count);
+```
+
+#### 📈 Atualizações de Estado
+- **Status**: ONLINE → BUSY → ONLINE (baseado em eventos)
+- **LastActivity**: Atualizado a cada interação
+- **Métricas**: Calculadas em tempo real na UI
+- **NgZone**: Garante atualização da interface
+
+### 🚫 Sem Polling de Rede Desnecessário
+- Estado atualizado via **eventos**, não polling
+- Polling apenas para **status do agente** (4s)
+- Métricas calculadas **localmente** na apresentação
+- **Performance otimizada** com RxJS operators
 
 ## Como rodar
 ```bash
