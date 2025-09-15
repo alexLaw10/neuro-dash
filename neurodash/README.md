@@ -29,10 +29,16 @@ Princípios aplicados:
 ## Diagrama (Arquitetura Hexagonal por MFE)
 ```mermaid
 flowchart LR
-  UI[Presentation (Angular Components)] --> APP[Application Services / Use Cases]
-  APP -->|Ports| PORTS[(Ports)]
-  ADP[Adapters/Infra (HTTP/Repo)] -->|Implements| PORTS
-  APP --> DOM[Domain (Entities/Enums)]
+  UI[Presentation]
+  APP[Application]
+  PORTS[(Ports)]
+  ADP[Adapters]
+  DOM[Domain]
+
+  UI --> APP
+  APP --> PORTS
+  ADP --> PORTS
+  APP --> DOM
   UI --> DOM
 ```
 
