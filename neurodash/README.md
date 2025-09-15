@@ -159,42 +159,51 @@ flowchart TB
 ## Arquitetura Geral (MFEs + Shell)
 ```mermaid
 flowchart TB
-  subgraph Shell["🏠 Shell (Container)"]
-    ROUTER["Router + Workbench Outlets<br/>• agents: /workbench/(agents:agents)<br/>• chat: /workbench/(chat:chat)"]
-    SIDEBAR["Sidebar/Layout<br/>• Navegação principal<br/>• Layout responsivo"]
-  end
-  
-  subgraph MFE-Agents["🤖 MFE-Agents"]
-    LIST["ListComponent<br/>• Grid de agentes<br/>• Métricas em tempo real<br/>• Event listener"]
-    AGENT_SVC["AgentService<br/>• CRUD de agentes<br/>• Cálculo de métricas"]
-  end
-  
-  subgraph MFE-Chat["💬 MFE-Chat"]
-    CHAT["ChatComponent<br/>• Interface de chat<br/>• Simulação de respostas<br/>• Event dispatcher"]
-    MSG_SVC["MessageService<br/>• Gerenciamento de mensagens<br/>• Comunicação entre MFEs"]
-    STATUS_POLL["Status Polling<br/>• watchAgentStatus()<br/>• Timer: 4s interval<br/>• Observable stream"]
-  end
-  
-  subgraph MockAPI["🔧 Mock API"]
-    API["json-server<br/>• Agents endpoint<br/>• Messages endpoint<br/>• Port 3001"]
+  %% Shell (Container) no topo
+  Shell["🏠 Shell (Container)"]
+  SIDEBAR["Sidebar/Layout<br/>Navegação<br/>Layout responsivo"]
+  ROUTER["Router + Workbench Outlets<br/>/workbench/(agents | chat)"]
+
+  Shell --> SIDEBAR
+  Shell --> ROUTER
+
+  %% MFEs como filhos do Router
+  subgraph MFE_Agents["🤖 MFE-Agents"]
+    LIST["ListComponent<br/>Grid de agentes<br/>Métricas em tempo real"]
+    AGENT_SVC["AgentService<br/>CRUD de agentes<br/>Cálculo de métricas"]
   end
 
-  ROUTER -- "Module Federation<br/>Dynamic imports" --> LIST
-  ROUTER -- "Module Federation<br/>Dynamic imports" --> CHAT
-  
-  CHAT -- "CustomEvent<br/>chat:messageSent<br/>{agentId, status, timestamp}" --> LIST
-  CHAT -- "HTTP Requests<br/>GET/POST messages" --> API
-  LIST -- "HTTP Requests<br/>GET agents" --> API
-  
-  STATUS_POLL -- "Polling every 4s<br/>getAgentById()" --> API
+  subgraph MFE_Chat["💬 MFE-Chat"]
+    CHAT["ChatComponent<br/>Interface de chat<br/>Simulação de respostas"]
+    MSG_SVC["MessageService<br/>Gerencia mensagens<br/>Comunicação entre MFEs"]
+    STATUS_POLL["Status Polling<br/>watchAgentStatus()<br/>Intervalo: 4s"]
+  end
+
+  ROUTER -- "Module Federation" --> LIST
+  ROUTER -- "Module Federation" --> CHAT
+
+  %% Mock API como base de dados
+  subgraph MockAPI["🔧 Mock API"]
+    API["json-server<br/>/agents<br/>/messages<br/>Porta 3001"]
+  end
+
+  %% Fluxos de dados e eventos
+  CHAT -- "CustomEvent: chat:messageSent" --> LIST
+  CHAT -- "GET/POST messages" --> API
+  LIST -- "GET agents" --> API
+  STATUS_POLL -- "Polling 4s: getAgentById()" --> API
   STATUS_POLL --> CHAT
-  
-  LIST -- "fromEvent(window)<br/>RxJS Observable" --> LIST
-  
+  LIST -- "fromEvent(window) RxJS" --> LIST
+
+  %% Serviços internos
+  LIST --> AGENT_SVC
+  CHAT --> MSG_SVC
+
+  %% Estilos
   style Shell fill:#e3f2fd
-  style MFE-Agents fill:#f3e5f5
-  style MFE-Chat fill:#e8f5e8
-  style MockAPI fill:#fff3e0
+  style MFE_Agents fill:#f3e5f5
+  style MFE_Chat fill:#e8f5e8
+  style MockAPI fill:#fff3e
 ```
 
 ## 🔄 Comunicação entre MFEs
